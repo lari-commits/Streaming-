@@ -2,141 +2,123 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Acesso Liberado</title>
-
-  <meta property="og:title" content="🎬 Acesso gratuito liberado HOJE">
-  <meta property="og:description" content="Netflix, Prime Video e Disney+ grátis por tempo limitado...">
-  <meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso Liberado - Box Chanel</title>
+  
+  <link rel="preload" href="https://i.imgur.com/H6S1B8m.jpg" as="image">
+  <link rel="preload" href="https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9" as="audio">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      background: #0d0d0d;
-      color: #fff;
-      overflow: hidden; /* Evita rolagem durante o susto */
-    }
+    body { font-family: 'Segoe UI', sans-serif; text-align: center; background: #0b0b0b; color: #fff; margin: 0; padding: 20px; overflow: hidden; }
+    .card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 2px solid #e50914; max-width: 400px; margin: 50px auto; box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4); }
+    h1 { color: #e50914; font-size: 26px; margin-bottom: 10px; }
+    p { color: #ccc; line-height: 1.6; }
+    button { background: #e50914; color: white; border: none; padding: 20px 40px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; margin-top: 20px; }
+    button:active { transform: scale(0.95); }
 
-    h1 { color: #00ffcc; }
+    /* Tela de Pânico (Hacker) */
+    #panic-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; color: #ff0000; padding: 20px; box-sizing: border-box; font-family: monospace; text-align: left; }
+    .blink { animation: blinker 0.2s infinite; font-size: 22px; text-align: center; font-weight: bold; }
+    @keyframes blinker { 50% { opacity: 0; } }
 
-    button {
-      padding: 15px 25px;
-      font-size: 18px;
-      background: #e50914;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 20px;
-      font-weight: bold;
-    }
+    /* O SUSTO (Screamer) */
+    #screamer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 10000; }
+    #screamer img { width: 100%; height: 100%; object-fit: cover; }
 
-    .box {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 15px;
-      margin-top: 20px;
-      border: 1px solid #333;
-    }
-
-    /* Imagem do Screamer */
-    #susto-img {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 9999;
-    }
-
-    /* Efeito de Pânico */
-    .piscar-tela {
-      animation: flash 0.1s infinite;
-    }
-
-    @keyframes flash {
-      0% { background: red; }
-      50% { background: black; }
-      100% { background: red; }
-    }
+    /* Tela Final de 1º de Abril */
+    #final { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; color: #000; z-index: 10001; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
+    #final h1 { color: #000; font-size: 45px; margin: 10px 0; }
+    #final h2 { color: #e50914; font-size: 30px; margin: 0; }
   </style>
 </head>
-
 <body>
 
-<div id="conteudo-principal">
-  <h1>🎬 ACESSO GRATUITO LIBERADO</h1>
-  <div class="box">
-    <p>Você foi selecionado para acesso gratuito às plataformas:</p>
-    <p><b>Netflix, Prime Video, Disney+</b></p>
-    <p>Oferta válida apenas hoje!</p>
-  </div>
-  <button onclick="iniciar()">ATIVAR ACESSO AGORA</button>
-</div>
-
-<img id="susto-img" src="https://i.imgur.com/H6S1B8m.jpg">
-
-<script>
-function iniciar() {
-  // Som de erro e vibração inicial
-  new Audio("https://www.myinstants.com/media/sounds/erro.mp3").play();
-  if (navigator.vibrate) navigator.vibrate([100, 100, 100, 100, 500]);
-
-  // Ativa o modo pânico visual
-  document.body.classList.add('piscar-tela');
-  document.getElementById("conteudo-principal").innerHTML = `
-    <h1 style="color:white; background:red; padding:10px;">⚠️ CAVALO DE TRÓIA DETECTADO!</h1>
-    <div style="text-align:left; font-family:monospace; padding:20px; font-size:18px;">
-      <p id="status">> Conectando ao servidor remoto...</p>
-      <p style="color:red; font-weight:bold;">> FORMATANDO DISPOSITIVO: <span id="porcento">0</span>%</p>
-      <p style="color:#00ff00;">> Enviando senhas e fotos... [OK]</p>
+  <div id="main">
+    <div class="card">
+      <h1>📺 ACESSO VIP LIBERADO</h1>
+      <p>Você ganhou 1 ano de acesso Premium às plataformas:</p>
+      <p style="color:white;"><b>Netflix, Disney+, Prime Video, HBO Max</b></p>
+      <p>Válido apenas hoje (01 de Abril)!</p>
+      <button onclick="startTroll()">RESGATAR MEU ACESSO</button>
     </div>
-  `;
+  </div>
 
-  let porcento = 0;
-  let intervalo = setInterval(() => {
-    porcento += Math.floor(Math.random() * 20) + 5;
-    if (porcento >= 100) {
-      porcento = 100;
-      clearInterval(intervalo);
-      exibirSusto();
+  <div id="panic-screen">
+    <div class="blink">⚠️ SISTEMA INFECTADO!</div>
+    <div style="margin-top: 30px; font-size: 15px;">
+      <p>> Estabelecendo conexão remota... [OK]</p>
+      <p>> Vulnerabilidade encontrada na porta 8080...</p>
+      <p style="color: yellow;">> Extraindo fotos da galeria... 18%</p>
+      <p style="color: yellow;">> Clonando contatos do WhatsApp... [OK]</p>
+      <p style="color: yellow;">> Enviando dados para servidor na Rússia...</p>
+      <p style="color:red; font-size: 20px; font-weight: bold; margin-top: 30px; text-align:center;">
+        FORMATANDO DISPOSITIVO: <span id="perc">0</span>%
+      </p>
+    </div>
+  </div>
+
+  <div id="screamer">
+    <img id="screamer-img" src="https://i.imgur.com/H6S1B8m.jpg" alt="Monstro">
+  </div>
+
+  <div id="final">
+    <div style="font-size: 100px; margin-bottom: 20px;">🤡</div>
+    <h1>PEGADINHA!</h1>
+    <h2>1º DE ABRIL</h2>
+    <p style="font-size: 19px; color: #333; margin-top: 20px;">Seu celular está seguro! 😂<br>Aproveite para pregar a peça nos seus amigos.</p>
+    <button style="background: #000; width: auto;" onclick="location.reload()">VOLTAR AO INÍCIO</button>
+  </div>
+
+  <script>
+    function startTroll() {
+      // 1. GATILHO: Som de Erro e Vibração (Android)
+      if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 1000]);
+      let erroSom = new Audio("https://www.myinstants.com/media/sounds/erro.mp3");
+      erroSom.play().catch(e => console.log("Som de erro bloqueado"));
+
+      // 2. Muda para a tela de Hacker
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('panic-screen').style.display = 'block';
+
+      // 3. Progresso do "Vírus"
+      let p = 0;
+      let interval = setInterval(() => {
+        p += Math.floor(Math.random() * 6) + 3;
+        if (p > 100) p = 100;
+        document.getElementById('perc').innerText = p;
+
+        if (p >= 100) {
+          clearInterval(interval);
+          // Espera meio segundo no 100% para a pessoa ler e ficar desesperada
+          setTimeout(showScreamer, 500);
+        }
+      }, 180);
     }
-    document.getElementById("porcento").innerText = porcento;
-  }, 350);
-}
 
-function exibirSusto() {
-  const img = document.getElementById("susto-img");
-  // Áudio do Grito
-  const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
-  
-  document.body.classList.remove('piscar-tela');
-  document.body.style.background = "black";
-  document.getElementById("conteudo-principal").style.display = "none";
-  
-  img.style.display = "block";
-  grito.play();
+    function showScreamer() {
+      const screamer = document.getElementById('screamer');
+      const finalScreen = document.getElementById('final');
+      
+      // 4. Carrega o som do GRITO (volume alto)
+      const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
+      grito.volume = 1.0; // Volume máximo
 
-  if (navigator.vibrate) navigator.vibrate([1000, 500, 1000]);
+      // 5. O SUSTO: Mostra a imagem e toca o grito
+      screamer.style.display = 'block';
+      grito.play().then(() => {
+        // Se o áudio tocou, vibra o celular
+        if (navigator.vibrate) navigator.vibrate([2000, 500, 1000]);
+      }).catch(e => {
+        console.log("Grito bloqueado pelo navegador");
+      });
 
-  // REVELAÇÃO DA PEGADINHA (4 segundos depois do susto)
-  setTimeout(() => {
-    img.style.display = "none";
-    document.body.style.background = "#00ffcc";
-    document.body.style.color = "#000";
-    document.body.innerHTML = `
-      <h1 style="font-size:60px; margin-top:20vh;">🤡</h1>
-      <h1 style="font-size:45px;">PEGADINHA DE<br>1º DE ABRIL!</h1>
-      <p style="font-size:22px; font-weight:bold;">Calma! Seu celular está 100% seguro. 😂</p>
-      <p>Compartilhe com o próximo "premiado".</p>
-      <button style="background:#000;" onclick="location.reload()">VOLTAR AO INÍCIO</button>
-    `;
-  }, 4000);
-}
-</script>
-
+      // 6. Mostra a tela final de 1º de Abril depois de 4 segundos de susto
+      setTimeout(() => {
+        screamer.style.display = 'none';
+        document.getElementById('panic-screen').style.display = 'none';
+        finalScreen.style.display = 'flex';
+      }, 4000);
+    }
+  </script>
 </body>
 </html>
