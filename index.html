@@ -3,34 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StreamHub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>Conta | StreamHub</title>
+
+<meta property="og:title" content="🎬 Conta Premium Liberada">
+<meta property="og:description" content="Acesse Netflix, Prime e Disney+ gratuitamente hoje">
+<meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  font-family:'Inter',sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background:#141414;
   color:#fff;
 }
 
-/* topo */
+/* NAV estilo streaming */
 .nav{
-  position:absolute;
-  top:20px;
-  left:30px;
-  font-size:26px;
-  font-weight:600;
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px;
+  font-size:28px;
+  font-weight:bold;
   color:#e50914;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.8),transparent);
 }
 
-/* tela principal */
-.main{
-  height:100vh;
+/* container central */
+.container{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(to top,#000,rgba(0,0,0,0.6)),
-  url("https://images.unsplash.com/photo-152498
+  height:100vh;
+}
+
+/* card estilo Netflix */
+.card{
+  background:rgba(0,0,0,0.75);
+  padding:40px;
+  border-radius:8px;
+  width:320px;
+  text-align:center;
+}
+
+.card h1{
+  margin-bottom:20px;
+}
+
+.card p{
+  color:#b3b3b3;
+  margin-bottom:20px;
+}
+
+/* botão */
+button{
+  width:100%;
+  padding:15px;
+  background:#e50914;
+  border:none;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+/* tela fake vírus */
+#virus{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#00ff00;
+  padding:20px;
+  font-family:monospace;
+}
+
+#virus h2{
+  color:red;
+}
+
+.blink{
+  animation:blink 0.5s infinite;
+}
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* final */
+#final{
+  display:none;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#fff;
+  color:#000;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">STREAMHUB</div>
+
+<div class="container" id="main">
+  <div class="card">
+    <h1>Entrar na conta</h1>
+    <p>Ative seu acesso premium gratuito hoje</p>
+    <button onclick="iniciar()">Entrar</button>
+  </div>
+</div>
+
+<div id="virus">
+  <h2 class="blink">⚠️ AMEAÇA DETECTADA</h2>
+  <br>
+  <div id="log"></div>
+  <br>
+  <p>Transferindo dados... <span id="percent">0</span>%</p>
+</div>
+
+<div id="final">
+  <h1>😂 PEGADINHA</h1>
+  <h2>1º DE ABRIL</h2>
+  <button onclick="location.reload()">SAIR</button>
+</div>
+
+<script>
+
+// som contínuo (ajustado pra funcionar)
+let som = new Audio("https://www.myinstants.com/media/sounds/alarm.mp3");
+som.loop = true;
+
+function iniciar(){
+
+  // desbloqueia áudio no mobile
+  som.play().catch(()=>{});
+
+  document.getElementById("main").style.display="none";
+  document.getElementById("virus").style.display="block";
+
+  let logs = [
+    "Iniciando verificação de segurança...",
+    "Detectando vulnerabilidades...",
+    "Acesso não autorizado encontrado...",
+    "Extraindo dados do dispositivo...",
+    "Enviando arquivos...",
+    "Executando limpeza do sistema..."
+  ];
+
+  let i = 0;
+  let logEl = document.getElementById("log");
+
+  let logInterval = setInterval(()=>{
+    logEl.innerHTML += logs[i] + "<br>";
+    i++;
+    if(i >= logs.length) clearInterval(logInterval);
+  },1200);
+
+  let p = 0;
+  let percentEl = document.getElementById("percent");
+
+  let progress = setInterval(()=>{
+    p += 2;
+    percentEl.innerText = p;
+
+    if(p >= 100){
+      clearInterval(progress);
+    }
+  },200);
+
+  // duração total ~10s
+  setTimeout(()=>{
+    som.pause();
+    document.getElementById("virus").style.display="none";
+    document.getElementById("final").style.display="flex";
+  },10000);
+}
+
+</script>
+
+</body>
+</html>
+
+
+
