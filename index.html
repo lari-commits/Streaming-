@@ -4,120 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acesso Liberado - Box Chanel</title>
-  
-  <link rel="preload" href="https://i.imgur.com/H6S1B8m.jpg" as="image">
-  <link rel="preload" href="https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9" as="audio">
-
   <style>
-    body { font-family: 'Segoe UI', sans-serif; text-align: center; background: #0b0b0b; color: #fff; margin: 0; padding: 20px; overflow: hidden; }
-    .card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 2px solid #e50914; max-width: 400px; margin: 50px auto; box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4); }
-    h1 { color: #e50914; font-size: 26px; margin-bottom: 10px; }
-    p { color: #ccc; line-height: 1.6; }
-    button { background: #e50914; color: white; border: none; padding: 20px 40px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; margin-top: 20px; }
-    button:active { transform: scale(0.95); }
+    body { font-family: sans-serif; text-align: center; background: #000; color: #fff; margin: 0; overflow: hidden; }
+    .card { background: #111; padding: 30px; border-radius: 20px; border: 2px solid #e50914; max-width: 350px; margin: 80px auto; }
+    button { background: #e50914; color: white; border: none; padding: 20px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; }
+    
+    /* Tela de Vírus */
+    #panic { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; color: red; padding: 20px; text-align: left; font-family: monospace; }
+    .blink { animation: flash 0.2s infinite; font-size: 25px; text-align: center; margin-bottom: 20px; }
+    @keyframes flash { 50% { opacity: 0; } }
 
-    /* Tela de Pânico (Hacker) */
-    #panic-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; color: #ff0000; padding: 20px; box-sizing: border-box; font-family: monospace; text-align: left; }
-    .blink { animation: blinker 0.2s infinite; font-size: 22px; text-align: center; font-weight: bold; }
-    @keyframes blinker { 50% { opacity: 0; } }
-
-    /* O SUSTO (Screamer) */
-    #screamer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 10000; }
+    /* O SUSTO */
+    #screamer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; }
     #screamer img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Tela Final de 1º de Abril */
-    #final { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; color: #000; z-index: 10001; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
-    #final h1 { color: #000; font-size: 45px; margin: 10px 0; }
-    #final h2 { color: #e50914; font-size: 30px; margin: 0; }
+    /* TELA FINAL */
+    #final { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; color: #000; z-index: 10001; flex-direction: column; justify-content: center; align-items: center; }
   </style>
 </head>
 <body>
 
   <div id="main">
     <div class="card">
-      <h1>📺 ACESSO VIP LIBERADO</h1>
-      <p>Você ganhou 1 ano de acesso Premium às plataformas:</p>
-      <p style="color:white;"><b>Netflix, Disney+, Prime Video, HBO Max</b></p>
-      <p>Válido apenas hoje (01 de Abril)!</p>
-      <button onclick="startTroll()">RESGATAR MEU ACESSO</button>
+      <h1 style="color:#e50914">🎬 ACESSO GRÁTIS</h1>
+      <p>Libere Netflix e Disney+ agora.</p>
+      <button onclick="comecar()">ATIVAR ACESSO</button>
     </div>
   </div>
 
-  <div id="panic-screen">
-    <div class="blink">⚠️ SISTEMA INFECTADO!</div>
-    <div style="margin-top: 30px; font-size: 15px;">
-      <p>> Estabelecendo conexão remota... [OK]</p>
-      <p>> Vulnerabilidade encontrada na porta 8080...</p>
-      <p style="color: yellow;">> Extraindo fotos da galeria... 18%</p>
-      <p style="color: yellow;">> Clonando contatos do WhatsApp... [OK]</p>
-      <p style="color: yellow;">> Enviando dados para servidor na Rússia...</p>
-      <p style="color:red; font-size: 20px; font-weight: bold; margin-top: 30px; text-align:center;">
-        FORMATANDO DISPOSITIVO: <span id="perc">0</span>%
-      </p>
-    </div>
+  <div id="panic">
+    <div class="blink">⚠️ SISTEMA INVADIDO!</div>
+    <p>> Baixando fotos da galeria...</p>
+    <p>> Enviando senhas salvas...</p>
+    <p style="font-size: 30px; font-weight: bold;">LIMPANDO HD: <span id="perc">0</span>%</p>
   </div>
 
   <div id="screamer">
-    <img id="screamer-img" src="https://i.imgur.com/H6S1B8m.jpg" alt="Monstro">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A6R_N1v_D_Xy1IayC5iX_8F6-fIAtR5a_w&s">
   </div>
 
   <div id="final">
-    <div style="font-size: 100px; margin-bottom: 20px;">🤡</div>
-    <h1>PEGADINHA!</h1>
-    <h2>1º DE ABRIL</h2>
-    <p style="font-size: 19px; color: #333; margin-top: 20px;">Seu celular está seguro! 😂<br>Aproveite para pregar a peça nos seus amigos.</p>
-    <button style="background: #000; width: auto;" onclick="location.reload()">VOLTAR AO INÍCIO</button>
+    <h1 style="font-size: 80px; margin:0;">🤡</h1>
+    <h1 style="font-size: 40px;">PEGADINHA!</h1>
+    <h2 style="color:red;">1º DE ABRIL</h2>
+    <p>Calma, foi só uma brincadeira! 😂</p>
+    <button style="background:#000; width:auto; padding: 10px 30px;" onclick="location.reload()">SAIR</button>
   </div>
 
   <script>
-    function startTroll() {
-      // 1. GATILHO: Som de Erro e Vibração (Android)
-      if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 1000]);
-      let erroSom = new Audio("https://www.myinstants.com/media/sounds/erro.mp3");
-      erroSom.play().catch(e => console.log("Som de erro bloqueado"));
+    // Link de áudio de grito (MP3 direto)
+    const grito = new Audio("https://www.myinstants.com/media/sounds/screamer-1.mp3");
 
-      // 2. Muda para a tela de Hacker
+    function comecar() {
+      // O segredo: tocar e pausar o som no clique inicial "libera" o áudio no celular
+      grito.play().then(() => { grito.pause(); grito.currentTime = 0; });
+
       document.getElementById('main').style.display = 'none';
-      document.getElementById('panic-screen').style.display = 'block';
+      document.getElementById('panic').style.display = 'block';
 
-      // 3. Progresso do "Vírus"
       let p = 0;
       let interval = setInterval(() => {
-        p += Math.floor(Math.random() * 6) + 3;
-        if (p > 100) p = 100;
+        p += 4;
         document.getElementById('perc').innerText = p;
-
         if (p >= 100) {
           clearInterval(interval);
-          // Espera meio segundo no 100% para a pessoa ler e ficar desesperada
-          setTimeout(showScreamer, 500);
+          setTimeout(atacar, 300);
         }
-      }, 180);
+      }, 100);
     }
 
-    function showScreamer() {
-      const screamer = document.getElementById('screamer');
-      const finalScreen = document.getElementById('final');
+    function atacar() {
+      const telaSusto = document.getElementById('screamer');
+      telaSusto.style.display = 'block';
       
-      // 4. Carrega o som do GRITO (volume alto)
-      const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
-      grito.volume = 1.0; // Volume máximo
+      grito.volume = 1.0;
+      grito.play();
 
-      // 5. O SUSTO: Mostra a imagem e toca o grito
-      screamer.style.display = 'block';
-      grito.play().then(() => {
-        // Se o áudio tocou, vibra o celular
-        if (navigator.vibrate) navigator.vibrate([2000, 500, 1000]);
-      }).catch(e => {
-        console.log("Grito bloqueado pelo navegador");
-      });
+      if (navigator.vibrate) navigator.vibrate([1000, 500, 1000]);
 
-      // 6. Mostra a tela final de 1º de Abril depois de 4 segundos de susto
+      // Mostra o final depois de 3 segundos de susto
       setTimeout(() => {
-        screamer.style.display = 'none';
-        document.getElementById('panic-screen').style.display = 'none';
-        finalScreen.style.display = 'flex';
-      }, 4000);
+        telaSusto.style.display = 'none';
+        document.getElementById('panic').style.display = 'none';
+        document.getElementById('final').style.display = 'flex';
+      }, 3000);
     }
   </script>
 </body>
