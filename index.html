@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Acesso Liberado</title>
+
+  <!-- Prévia do WhatsApp -->
+  <meta property="og:title" content="🎬 Acesso gratuito liberado HOJE">
+  <meta property="og:description" content="Netflix, Prime Video e Disney+ grátis por tempo limitado...">
+  <meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 40px;
+      background: #0d0d0d;
+      color: #fff;
+    }
+
+    h1 {
+      color: #00ffcc;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      background: #e50914;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .box {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎬 ACESSO GRATUITO LIBERADO</h1>
+
+<div class="box">
+  <p>Você foi selecionado para acesso gratuito às plataformas:</p>
+  <p><b>Netflix, Prime Video, Disney+</b></p>
+  <p>Oferta válida apenas hoje.</p>
+</div>
+
+<button onclick="iniciar()">Ativar acesso agora</button>
+
+<script>
+function iniciar() {
+  // vibração
+  navigator.vibrate(500);
+
+  // som
+  let audio = new Audio("https://www.myinstants.com/media/sounds/vine-boom.mp3");
+  audio.play();
+
+  // tela fake de hack
+  document.body.innerHTML = `
+    <h1 style="color:red;">⚠️ ACESSANDO DADOS...</h1>
+    <p>Conectando ao dispositivo...</p>
+    <p id="contador">3</p>
+  `;
+
+  let count = 3;
+  let intervalo = setInterval(() => {
+    count--;
+    document.getElementById("contador").innerText = count;
+
+    if (count === 0) {
+      clearInterval(intervalo);
+
+      document.body.innerHTML = `
+        <h1>😂 1º DE ABRIL 😂</h1>
+        <p>Você caiu na pegadinha!</p>
+      `;
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
