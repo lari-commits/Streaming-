@@ -4,23 +4,21 @@
   <meta charset="UTF-8">
   <title>Acesso Liberado</title>
 
-  <!-- Prévia do WhatsApp -->
   <meta property="og:title" content="🎬 Acesso gratuito liberado HOJE">
   <meta property="og:description" content="Netflix, Prime Video e Disney+ grátis por tempo limitado...">
   <meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
 
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
       background: #0d0d0d;
       color: #fff;
+      overflow: hidden; /* Evita rolagem durante o susto */
     }
 
-    h1 {
-      color: #00ffcc;
-    }
+    h1 { color: #00ffcc; }
 
     button {
       padding: 15px 25px;
@@ -31,6 +29,7 @@
       border-radius: 10px;
       cursor: pointer;
       margin-top: 20px;
+      font-weight: bold;
     }
 
     .box {
@@ -38,52 +37,104 @@
       padding: 20px;
       border-radius: 15px;
       margin-top: 20px;
+      border: 1px solid #333;
+    }
+
+    /* Imagem do Screamer */
+    #susto-img {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 9999;
+    }
+
+    /* Efeito de Pânico */
+    .piscar-tela {
+      animation: flash 0.1s infinite;
+    }
+
+    @keyframes flash {
+      0% { background: red; }
+      50% { background: black; }
+      100% { background: red; }
     }
   </style>
 </head>
 
 <body>
 
-<h1>🎬 ACESSO GRATUITO LIBERADO</h1>
-
-<div class="box">
-  <p>Você foi selecionado para acesso gratuito às plataformas:</p>
-  <p><b>Netflix, Prime Video, Disney+</b></p>
-  <p>Oferta válida apenas hoje.</p>
+<div id="conteudo-principal">
+  <h1>🎬 ACESSO GRATUITO LIBERADO</h1>
+  <div class="box">
+    <p>Você foi selecionado para acesso gratuito às plataformas:</p>
+    <p><b>Netflix, Prime Video, Disney+</b></p>
+    <p>Oferta válida apenas hoje!</p>
+  </div>
+  <button onclick="iniciar()">ATIVAR ACESSO AGORA</button>
 </div>
 
-<button onclick="iniciar()">Ativar acesso agora</button>
+<img id="susto-img" src="https://i.imgur.com/H6S1B8m.jpg">
 
 <script>
 function iniciar() {
-  // vibração
-  navigator.vibrate(500);
+  // Som de erro e vibração inicial
+  new Audio("https://www.myinstants.com/media/sounds/erro.mp3").play();
+  if (navigator.vibrate) navigator.vibrate([100, 100, 100, 100, 500]);
 
-  // som
-  let audio = new Audio("https://www.myinstants.com/media/sounds/vine-boom.mp3");
-  audio.play();
-
-  // tela fake de hack
-  document.body.innerHTML = `
-    <h1 style="color:red;">⚠️ ACESSANDO DADOS...</h1>
-    <p>Conectando ao dispositivo...</p>
-    <p id="contador">3</p>
+  // Ativa o modo pânico visual
+  document.body.classList.add('piscar-tela');
+  document.getElementById("conteudo-principal").innerHTML = `
+    <h1 style="color:white; background:red; padding:10px;">⚠️ CAVALO DE TRÓIA DETECTADO!</h1>
+    <div style="text-align:left; font-family:monospace; padding:20px; font-size:18px;">
+      <p id="status">> Conectando ao servidor remoto...</p>
+      <p style="color:red; font-weight:bold;">> FORMATANDO DISPOSITIVO: <span id="porcento">0</span>%</p>
+      <p style="color:#00ff00;">> Enviando senhas e fotos... [OK]</p>
+    </div>
   `;
 
-  let count = 3;
+  let porcento = 0;
   let intervalo = setInterval(() => {
-    count--;
-    document.getElementById("contador").innerText = count;
-
-    if (count === 0) {
+    porcento += Math.floor(Math.random() * 20) + 5;
+    if (porcento >= 100) {
+      porcento = 100;
       clearInterval(intervalo);
-
-      document.body.innerHTML = `
-        <h1>😂 1º DE ABRIL 😂</h1>
-        <p>Você caiu na pegadinha!</p>
-      `;
+      exibirSusto();
     }
-  }, 1000);
+    document.getElementById("porcento").innerText = porcento;
+  }, 350);
+}
+
+function exibirSusto() {
+  const img = document.getElementById("susto-img");
+  // Áudio do Grito
+  const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
+  
+  document.body.classList.remove('piscar-tela');
+  document.body.style.background = "black";
+  document.getElementById("conteudo-principal").style.display = "none";
+  
+  img.style.display = "block";
+  grito.play();
+
+  if (navigator.vibrate) navigator.vibrate([1000, 500, 1000]);
+
+  // REVELAÇÃO DA PEGADINHA (4 segundos depois do susto)
+  setTimeout(() => {
+    img.style.display = "none";
+    document.body.style.background = "#00ffcc";
+    document.body.style.color = "#000";
+    document.body.innerHTML = `
+      <h1 style="font-size:60px; margin-top:20vh;">🤡</h1>
+      <h1 style="font-size:45px;">PEGADINHA DE<br>1º DE ABRIL!</h1>
+      <p style="font-size:22px; font-weight:bold;">Calma! Seu celular está 100% seguro. 😂</p>
+      <p>Compartilhe com o próximo "premiado".</p>
+      <button style="background:#000;" onclick="location.reload()">VOLTAR AO INÍCIO</button>
+    `;
+  }, 4000);
 }
 </script>
 
